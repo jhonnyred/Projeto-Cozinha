@@ -1,49 +1,57 @@
 #### PROJETO ASSISTENTE ####
 
 #### MENU PRINCIPAL ####
-import json
+import pickle
+estoque = pickle.load(open("estoque.pkl", "rb"))
 inicio = "1"
 while inicio == "1":
-
-    bolean = input("Deseja modificar a pesagem de algum ingrediente? (admita 1 = sim e 0 = não):  ")
-    inicio = "0"
-
-## INTEREÇÃO COM OS PRODUTOS ##
-    if bolean == "1":
-        print("voce respondeu sim")
-        procura = input("Qual ingrediente gostaria de modificar a pesagem?:  ")
+    print(" M para modificar o estoque")
+    print(" V para visualizar o estoque")
+    print(" A para apagar o produto em estoque")
+    print(" R para o menu de receitas")
+    print(" Q para fechar programa")
+    menu = input("\n O que deseja fazer? ").upper()
+    
+    ## P (pesagem) ##
+    if menu == "M":
+        procura = input("Qual modificação deseja fazer?:  ")
 
         procura = procura.lower()
 
-        if procura == "arroz":
-            arrozP = input("Peso do arroz em grama: ")
-            
-            inicio = "1"
+        if procura in estoque:
+            estoque[procura] = input("identifique a quantia: ")
 
-        if procura == "feijao":
-            json.loads(estoque)
-             feijao = input("Peso do feijão em grama: ")
 
-             y0 = json.dumps(estoque[feijao])
-            
-            inicio = "1"
-            
-       
-## INTERAÇÃO COM O ESTOQUE ##
-    if bolean == "0":
-        print("você respondeu não")
-        acess = input("gostaria de acessar o estoque?:  ")
-        if acess == "1":
-            estoque = {"arroz": 0, "feijao": 0 }
-            #data = json.dumps(estoque)
-            print(estoque)
-            
-            
-            
-            inicio = "1"
-        
         else:
-            inicio = "1"
+            estoque[procura] = input("identifique a quantia: ")
+
+    if menu == "Q":
+        inicio = "0"
+
+    if menu == "A":
+        produto = input("Qual produto deseja apagar? ").lower()
+
+        if produto in estoque:
+            del estoque[produto]
+
+    pickle.dump(estoque, open("estoque.pkl", "wb"))
+
+    if menu == "R":
+        print(" E para escrever uma receita")
+        print(" L para livro de receitas")
+        Rmenu = input(" diz ai oq vc quer")
+
+        if Rmenu == "E":
+            
+
+
+    ## RECEITAS ##        
+
+       
+    ## Visualização ##
+    if menu == "V":
+        print("visualização de estoque")
+        print(estoque)
 
 
 
