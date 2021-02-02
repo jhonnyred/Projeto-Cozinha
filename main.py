@@ -85,7 +85,7 @@ while inicio == "1":
                             receituario[procura2][procura3] = input(" identifique a quantia: ").lower()
 
                         else:
-                            print( "\n Esse ingrediente não está nessa receita\n ")
+                            receituario[procura2][procura3] = input(" identifique a quantia: ").lower()
                             
                     else:
                         break
